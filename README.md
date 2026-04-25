@@ -45,7 +45,7 @@ fields the build script understands:
 | `title` | yes | Display title |
 | `subtitle` | no | One-line summary |
 | `scriptureRef` | yes | e.g. `1 Kings 19:11–13` |
-| `translation` | yes | `ESV` |
+| `translation` | yes | `NET` |
 | `scriptureSource` | no | URL for "Read in context" |
 | `audio` | no | Filename only — base URL is set in `build.mjs` |
 | `audioDuration` | no | e.g. `8 min · 32 sec` |

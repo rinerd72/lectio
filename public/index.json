@@ -1,0 +1,22 @@
+{
+  "generatedAt": "2026-04-25T05:57:57.011Z",
+  "publishTz": "America/Chicago",
+  "publishHour": 6,
+  "latest": "2026-04-25",
+  "days": [
+    {
+      "id": "2026-04-25",
+      "publishedAt": "2026-04-25T06:00:00-05:00",
+      "title": "The hand that opens",
+      "scriptureRef": "Psalm 145:15–16",
+      "revision": 1
+    },
+    {
+      "id": "2026-04-24",
+      "publishedAt": "2026-04-24T06:00:00-05:00",
+      "title": "On stillness, and the small voice that follows",
+      "scriptureRef": "1 Kings 19:11–13",
+      "revision": 1
+    }
+  ]
+}

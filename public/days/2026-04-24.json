@@ -1,0 +1,50 @@
+{
+  "id": "2026-04-24",
+  "revision": 1,
+  "publishedAt": "2026-04-24T06:00:00-05:00",
+  "dayNum": 117,
+  "season": "Eastertide",
+  "title": "On stillness, and the small voice that follows",
+  "subtitle": "Reflections from 1 Kings 19, on what we hear when the noise subsides.",
+  "scripture": {
+    "ref": "1 Kings 19:11–13",
+    "translation": "NET",
+    "verses": [
+      {
+        "n": 11,
+        "text": "And he said, \"Go out and stand on the mount before the LORD.\" And behold, the LORD passed by, and a great and strong wind tore the mountains and broke in pieces the rocks before the LORD, but the LORD was not in the wind."
+      },
+      {
+        "n": 12,
+        "text": "And after the wind an earthquake, but the LORD was not in the earthquake. And after the earthquake a fire, but the LORD was not in the fire. And after the fire the sound of a low whisper."
+      },
+      {
+        "n": 13,
+        "text": "And when Elijah heard it, he wrapped his face in his cloak and went out and stood at the entrance of the cave."
+      }
+    ],
+    "sourceUrl": "https://netbible.org/bible/1+Kings+19",
+    "source": "remote"
+  },
+  "audio": {
+    "url": "https://your-bucket.r2.dev/audio/2026-04-24.mp3",
+    "duration": "8 min · 32 sec"
+  },
+  "art": {
+    "url": "https://your-bucket.r2.dev/art/2026-04-24.jpg",
+    "caption": "Elijah at Horeb · Mid-19th c.",
+    "alt": "A figure stands at the entrance of a mountain cave as wind and storm pass over the peaks above."
+  },
+  "body": [
+    "Elijah had outrun chariots. He had called down fire from heaven and watched the prophets of Baal fall silent. And then, exhausted and afraid, he hid in a cave on the side of a mountain and asked God to let him die.",
+    "What follows is one of the strangest theophanies in scripture. Wind, earthquake, fire — every sign we associate with divine power passes by, and God is in none of them. Only after all the noise subsides does Elijah hear something else: a low whisper. And that, the text tells us, is the voice he wraps his face to receive.",
+    "There is a temptation, especially when we are frightened or tired, to look for God in what is loud. We want the wind. We want certainty that arrives like an earthquake. But the practice of devotion is, more often than not, the practice of staying still long enough to hear what is quiet.",
+    "Today, before you carry your worries any further, sit. Notice the noise. And then notice what is underneath it."
+  ],
+  "prayer": "Lord of the wind and the silence, teach me the patience of Elijah on the mountain. Quiet the loud places in me. Help me to recognize your voice when it comes — not in spectacle, but in the low and steady whisper that asks me to come out of my cave.",
+  "tags": [
+    "stillness",
+    "listening",
+    "comfort"
+  ]
+}

@@ -12,11 +12,18 @@ const CONTENT = path.join(ROOT, 'content');
 
 const REQUIRED = ['date', 'dayNum', 'title', 'scriptureRef', 'translation'];
 const TYPES = {
-  date: v => /^\d{4}-\d{2}-\d{2}$/.test(v),
+  date: v => /^\d{4}-\d{2}-\d{2}$/.test(normalizeDate(v)),
   dayNum: v => Number.isInteger(v) && v > 0,
   tags: v => Array.isArray(v),
   revision: v => Number.isInteger(v) && v >= 1,
 };
+
+function normalizeDate(value) {
+  if (value instanceof Date && !Number.isNaN(value.valueOf())) {
+    return value.toISOString().slice(0, 10);
+  }
+  return String(value);
+}
 
 let errors = 0, warnings = 0;
 const seen = new Set();
@@ -31,9 +38,10 @@ for (const f of fs.readdirSync(CONTENT).filter(f => f.endsWith('.md')).sort()) {
   for (const [k, fn] of Object.entries(TYPES)) if (fm[k] != null && !fn(fm[k])) fail(`invalid "${k}": ${JSON.stringify(fm[k])}`);
 
   if (fm.date) {
-    if (seen.has(fm.date)) fail(`duplicate date ${fm.date}`);
-    seen.add(fm.date);
-    if (!f.startsWith(fm.date)) warn(`filename doesn't match date (expected ${fm.date}.md)`);
+    const date = normalizeDate(fm.date);
+    if (seen.has(date)) fail(`duplicate date ${date}`);
+    seen.add(date);
+    if (!f.startsWith(date)) warn(`filename doesn't match date (expected ${date}.md)`);
   }
 
   // body sections

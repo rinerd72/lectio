@@ -1,0 +1,43 @@
+{
+  "id": "2026-04-25",
+  "revision": 1,
+  "publishedAt": "2026-04-25T06:00:00-05:00",
+  "dayNum": 118,
+  "season": "Eastertide",
+  "title": "The hand that opens",
+  "subtitle": "On Psalm 145 and the patient generosity of God.",
+  "scripture": {
+    "ref": "Psalm 145:15–16",
+    "translation": "NET",
+    "verses": [
+      {
+        "n": 15,
+        "text": "The eyes of all look to you, and you give them their food in due season."
+      },
+      {
+        "n": 16,
+        "text": "You open your hand; you satisfy the desire of every living thing."
+      }
+    ],
+    "sourceUrl": null,
+    "source": "bundled"
+  },
+  "audio": {
+    "url": "https://your-bucket.r2.dev/audio/2026-04-25.mp3",
+    "duration": "7 min · 14 sec"
+  },
+  "art": {
+    "url": "https://your-bucket.r2.dev/art/2026-04-25.jpg",
+    "caption": "An open hand · Study, c. 1890",
+    "alt": "An open hand · Study, c. 1890"
+  },
+  "body": [
+    "The Psalmist does not say God answers every demand. He says God opens his hand. There is a difference between hurry and provision, and the difference is the patience of *due season*.",
+    "Most of what we worry about is timing. Will it come? Will it come soon enough? The Psalm offers no schedule, only a posture: an open hand, and eyes that have learned to look up."
+  ],
+  "prayer": "Teach me to wait with my eyes open. Give me bread for today, trust for tomorrow, and the patience to recognize your hand when it opens.",
+  "tags": [
+    "provision",
+    "gratitude"
+  ]
+}

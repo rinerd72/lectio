@@ -26,6 +26,13 @@ const OUT_DAYS = path.join(OUT, 'days');
 
 function ensureDir(d) { fs.mkdirSync(d, { recursive: true }); }
 
+function normalizeDate(value) {
+  if (value instanceof Date && !Number.isNaN(value.valueOf())) {
+    return value.toISOString().slice(0, 10);
+  }
+  return String(value);
+}
+
 // Default publishedAt = 6:00 AM America/Chicago on the date.
 function defaultPublishedAt(dateStr) {
   // Chicago is UTC-5 (CDT) or UTC-6 (CST). For a publishing pipeline
@@ -74,12 +81,13 @@ function buildOne(filePath) {
   const src = fs.readFileSync(filePath, 'utf8');
   const { data: fm, content } = matter(src);
   if (!fm.date) throw new Error(`${filePath}: missing 'date' frontmatter`);
+  const date = normalizeDate(fm.date);
 
   const sections = splitSections(content);
   const out = {
-    id: fm.date,
+    id: date,
     revision: fm.revision || 1,
-    publishedAt: fm.publishedAt || defaultPublishedAt(fm.date),
+    publishedAt: fm.publishedAt || defaultPublishedAt(date),
     dayNum: fm.dayNum,
     season: fm.season || null,
     title: fm.title,
@@ -87,7 +95,7 @@ function buildOne(filePath) {
 
     scripture: {
       ref: fm.scriptureRef,
-      translation: fm.translation || 'ESV',
+      translation: fm.translation || 'NET',
       verses: sections.scripture ? parseScripture(sections.scripture) : [],
       sourceUrl: fm.scriptureSource || null,
       source: fm.scriptureSource ? 'remote' : 'bundled',
