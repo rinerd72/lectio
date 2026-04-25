@@ -67,6 +67,21 @@ git push
 | Pull latest from GitHub | `git pull` |
 | Fix a typo & republish | edit `.md`, bump `revision: 2` in frontmatter, `git push` |
 
+## Release times
+
+Most days do not need a custom release time. If you omit `publishTime`,
+the devotion releases at `6:00 AM` America/Chicago on the file's `date`.
+
+For a special release time, add this to the devotion frontmatter:
+
+```yaml
+publishTime: "5:30 AM"
+```
+
+Use quotes when the time includes a colon. You do not need to write the
+machine-style `publishedAt` timestamp unless you are doing an unusual
+advanced override.
+
 ## Cloudflare R2 bucket setup
 
 1. Cloudflare dashboard → R2 → Create bucket → name it `lectio`

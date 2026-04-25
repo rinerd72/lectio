@@ -15,7 +15,7 @@ import matter from 'gray-matter';
 const AUDIO_BASE = 'https://pub-e458b684eff145fcaf376abfe21f66f4.r2.dev/audio/';
 const ART_BASE   = 'https://pub-e458b684eff145fcaf376abfe21f66f4.r2.dev/art/';
 const PUBLISH_TZ = 'America/Chicago';
-const PUBLISH_HOUR = 6; // 6:00 AM local
+const DEFAULT_PUBLISH_TIME = '6:00 AM';
 // ──────────────────────────────────────────────────────────────────
 
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
@@ -33,11 +33,35 @@ function normalizeDate(value) {
   return String(value);
 }
 
-// Default publishedAt = 6:00 AM America/Chicago on the date.
-function defaultPublishedAt(dateStr) {
+function parsePublishTime(value) {
+  const raw = String(value || DEFAULT_PUBLISH_TIME).trim().toUpperCase();
+  const match = raw.match(/^(\d{1,2})(?::(\d{2}))?\s*(AM|PM)?$/);
+  if (!match) {
+    throw new Error(`invalid publishTime "${value}" (try "6:00 AM")`);
+  }
+
+  let hour = Number(match[1]);
+  const minute = match[2] == null ? 0 : Number(match[2]);
+  const period = match[3];
+  if (minute < 0 || minute > 59) {
+    throw new Error(`invalid publishTime "${value}" (minutes must be 00-59)`);
+  }
+  if (period) {
+    if (hour < 1 || hour > 12) throw new Error(`invalid publishTime "${value}"`);
+    if (period === 'AM' && hour === 12) hour = 0;
+    if (period === 'PM' && hour !== 12) hour += 12;
+  } else if (hour < 0 || hour > 23) {
+    throw new Error(`invalid publishTime "${value}"`);
+  }
+
+  return { hour, minute };
+}
+
+function formatPublishedAt(dateStr, publishTime) {
+  const { hour, minute } = parsePublishTime(publishTime);
   // Chicago is UTC-5 (CDT) or UTC-6 (CST). For a publishing pipeline
   // a fixed -05:00 offset is fine since we only care about ordering.
-  return `${dateStr}T0${PUBLISH_HOUR}:00:00-05:00`;
+  return `${dateStr}T${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}:00-05:00`;
 }
 
 // Pulls "## Heading" sections out of markdown body.
@@ -87,7 +111,7 @@ function buildOne(filePath) {
   const out = {
     id: date,
     revision: fm.revision || 1,
-    publishedAt: fm.publishedAt || defaultPublishedAt(date),
+    publishedAt: fm.publishedAt || formatPublishedAt(date, fm.publishTime),
     dayNum: fm.dayNum,
     season: fm.season || null,
     title: fm.title,
@@ -152,7 +176,7 @@ function buildAll() {
   const index = {
     generatedAt: new Date().toISOString(),
     publishTz: PUBLISH_TZ,
-    publishHour: PUBLISH_HOUR,
+    defaultPublishTime: DEFAULT_PUBLISH_TIME,
     latest: days.length ? days[days.length - 1].id : null,
     days: days.reverse(), // newest first
   };

@@ -30,7 +30,7 @@ lectio-content/
 1. Write a new devotion in `drafts/YYYY-MM-DD.md`.
 2. When ready, move it to `content/YYYY-MM-DD.md`.
 3. Run `npm run build`.
-4. Commit & push. The app picks it up at the publishedAt time.
+4. Commit & push. The app picks it up at the release time.
 
 ## File format (Markdown + frontmatter)
 
@@ -47,18 +47,27 @@ fields the build script understands:
 | `scriptureRef` | yes | e.g. `1 Kings 19:11–13` |
 | `translation` | yes | `NET` |
 | `scriptureSource` | no | URL for "Read in context" |
+| `publishTime` | no | Human-friendly local release time, e.g. `"5:30 AM"` |
 | `audio` | no | Filename only — base URL is set in `build.mjs` |
 | `audioDuration` | no | e.g. `8 min · 32 sec` |
 | `art` | no | Filename only — base URL is set in `build.mjs` |
 | `artCaption` | no | Caption shown over the image |
 | `artAlt` | no | Accessibility alt text |
 | `tags` | no | Array, e.g. `[comfort, rest]` |
-| `publishedAt` | no | ISO timestamp; defaults to 6:00 AM `America/Chicago` on `date` |
+| `publishedAt` | no | Advanced override only; normally use `publishTime` instead |
 | `revision` | no | Bump when you edit a published day |
 
 The body is split into three sections by `## Scripture`, `## Reflection`,
 and `## Prayer`. Scripture verses are blockquote lines starting with
 the verse number.
+
+If `publishTime` is omitted, the devotion releases at `6:00 AM`
+America/Chicago on the devotion's `date`. Put times in quotes when they
+include a colon:
+
+```yaml
+publishTime: "5:30 AM"
+```
 
 ## URLs (set once in `scripts/build.mjs`)
 

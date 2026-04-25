@@ -16,6 +16,7 @@ const TYPES = {
   dayNum: v => Number.isInteger(v) && v > 0,
   tags: v => Array.isArray(v),
   revision: v => Number.isInteger(v) && v >= 1,
+  publishTime: v => isValidPublishTime(v),
 };
 
 function normalizeDate(value) {
@@ -23,6 +24,17 @@ function normalizeDate(value) {
     return value.toISOString().slice(0, 10);
   }
   return String(value);
+}
+
+function isValidPublishTime(value) {
+  const raw = String(value).trim().toUpperCase();
+  const match = raw.match(/^(\d{1,2})(?::(\d{2}))?\s*(AM|PM)?$/);
+  if (!match) return false;
+  const hour = Number(match[1]);
+  const minute = match[2] == null ? 0 : Number(match[2]);
+  if (minute < 0 || minute > 59) return false;
+  if (match[3]) return hour >= 1 && hour <= 12;
+  return hour >= 0 && hour <= 23;
 }
 
 let errors = 0, warnings = 0;
