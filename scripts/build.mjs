@@ -12,8 +12,8 @@ import url from 'node:url';
 import matter from 'gray-matter';
 
 // ─── Configure these ──────────────────────────────────────────────
-const AUDIO_BASE = 'https://your-bucket.r2.dev/audio/';
-const ART_BASE   = 'https://your-bucket.r2.dev/art/';
+const AUDIO_BASE = 'https://pub-e458b684eff145fcaf376abfe21f66f4.r2.dev/audio/';
+const ART_BASE   = 'https://pub-e458b684eff145fcaf376abfe21f66f4.r2.dev/art/';
 const PUBLISH_TZ = 'America/Chicago';
 const PUBLISH_HOUR = 6; // 6:00 AM local
 // ──────────────────────────────────────────────────────────────────

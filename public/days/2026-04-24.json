@@ -27,11 +27,11 @@
     "source": "remote"
   },
   "audio": {
-    "url": "https://your-bucket.r2.dev/audio/2026-04-24.mp3",
+    "url": "https://pub-e458b684eff145fcaf376abfe21f66f4.r2.dev/audio/2026-04-24.mp3",
     "duration": "8 min · 32 sec"
   },
   "art": {
-    "url": "https://your-bucket.r2.dev/art/2026-04-24.jpg",
+    "url": "https://pub-e458b684eff145fcaf376abfe21f66f4.r2.dev/art/2026-04-24.jpg",
     "caption": "Elijah at Horeb · Mid-19th c.",
     "alt": "A figure stands at the entrance of a mountain cave as wind and storm pass over the peaks above."
   },

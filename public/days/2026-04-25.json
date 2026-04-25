@@ -23,11 +23,11 @@
     "source": "bundled"
   },
   "audio": {
-    "url": "https://your-bucket.r2.dev/audio/2026-04-25.mp3",
+    "url": "https://pub-e458b684eff145fcaf376abfe21f66f4.r2.dev/audio/2026-04-25.mp3",
     "duration": "7 min · 14 sec"
   },
   "art": {
-    "url": "https://your-bucket.r2.dev/art/2026-04-25.jpg",
+    "url": "https://pub-e458b684eff145fcaf376abfe21f66f4.r2.dev/art/2026-04-25.jpg",
     "caption": "An open hand · Study, c. 1890",
     "alt": "An open hand · Study, c. 1890"
   },
