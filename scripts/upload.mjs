@@ -56,6 +56,7 @@ async function uploadDir(localDir, prefix) {
   const dir = path.join(ROOT, 'assets', localDir);
   if (!fs.existsSync(dir)) return;
   for (const file of fs.readdirSync(dir)) {
+    if (file.startsWith('.')) continue;
     const full = path.join(dir, file);
     if (!fs.statSync(full).isFile()) continue;
     const key = `${prefix}/${file}`;
