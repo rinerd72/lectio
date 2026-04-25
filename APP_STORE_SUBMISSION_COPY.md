@@ -58,9 +58,9 @@ Use this after GitHub Pages is enabled:
 
 https://rinerd72.github.io/lectio/lectio.html
 
-Temporary fallback:
+Contact email:
 
-https://github.com/rinerd72/lectio/issues
+support@dwayneriner.com
 
 ## Marketing URL
 
