@@ -1,0 +1,16 @@
+{
+  "name": "lectio-content",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "build:watch": "node scripts/build.mjs --watch",
+    "lint": "node scripts/lint.mjs",
+    "upload": "node scripts/upload.mjs"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "@aws-sdk/client-s3": "^3.600.0"
+  }
+}
