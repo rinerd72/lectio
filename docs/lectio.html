@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lectio Daily | Quiet Scripture, Every Day</title>
+  <meta name="description" content="Lectio Daily is a calm daily Bible study app with NET scripture, written devotionals, prayer, and audio reflections.">
+  <meta name="theme-color" content="#17120c">
+  <style>
+    :root {
+      --ink: #221a12;
+      --muted: #6e5b45;
+      --paper: #fbf4e6;
+      --paper-soft: #fffaf0;
+      --gold: #d9a85b;
+      --blue: #263f5f;
+      --line: rgba(34, 26, 18, 0.14);
+      --shadow: 0 24px 80px rgba(34, 26, 18, 0.18);
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 20% 10%, rgba(217, 168, 91, 0.26), transparent 30rem),
+        radial-gradient(circle at 80% 0%, rgba(38, 63, 95, 0.18), transparent 28rem),
+        linear-gradient(180deg, #fffaf0 0%, #f4ead9 50%, #eadac3 100%);
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .page {
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .shell {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 24px 0;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      font-weight: 750;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 42px;
+      height: 42px;
+      place-items: center;
+      border: 1px solid rgba(217, 168, 91, 0.5);
+      border-radius: 14px;
+      color: var(--gold);
+      background: linear-gradient(145deg, #211810, #342514);
+      box-shadow: 0 10px 30px rgba(34, 26, 18, 0.2);
+      font-family: Georgia, serif;
+      font-size: 28px;
+      font-style: italic;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: var(--ink);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.75fr);
+      gap: 54px;
+      align-items: center;
+      padding: 72px 0 88px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 22px;
+      color: #765629;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 44px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    h1 {
+      max-width: 800px;
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(3.5rem, 10vw, 7.8rem);
+      line-height: 0.9;
+      letter-spacing: -0.07em;
+    }
+
+    .lead {
+      max-width: 650px;
+      margin: 28px 0 0;
+      color: var(--muted);
+      font-size: clamp(1.08rem, 2vw, 1.35rem);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 20px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      text-decoration: none;
+      font-weight: 800;
+      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+      cursor: pointer;
+    }
+
+    .button:focus-visible {
+      outline: 3px solid rgba(38, 63, 95, 0.35);
+      outline-offset: 3px;
+    }
+
+    .button.primary {
+      color: #fff7e8;
+      border-color: #251910;
+      background: linear-gradient(135deg, #20160f, #4a3219);
+      box-shadow: 0 16px 38px rgba(34, 26, 18, 0.22);
+    }
+
+    .button.secondary {
+      color: var(--ink);
+      background: rgba(255, 250, 240, 0.6);
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 45px rgba(34, 26, 18, 0.16);
+    }
+
+    .phone-card {
+      position: relative;
+      padding: 18px;
+      border: 1px solid rgba(255, 250, 240, 0.62);
+      border-radius: 46px;
+      background: linear-gradient(145deg, rgba(34, 26, 18, 0.95), rgba(72, 49, 27, 0.95));
+      box-shadow: var(--shadow);
+    }
+
+    .phone-screen {
+      min-height: 570px;
+      padding: 30px 24px;
+      border-radius: 34px;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(217, 168, 91, 0.32), transparent 18rem),
+        linear-gradient(180deg, #fff8ec, #eee0c9);
+    }
+
+    .phone-date {
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .phone-title {
+      margin: 22px 0 10px;
+      font-family: Georgia, serif;
+      font-size: 2.35rem;
+      line-height: 1;
+      letter-spacing: -0.045em;
+    }
+
+    .verse-card {
+      margin-top: 24px;
+      padding: 24px;
+      border: 1px solid rgba(34, 26, 18, 0.1);
+      border-radius: 28px;
+      background: rgba(255, 250, 240, 0.72);
+    }
+
+    .verse-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .mini-player {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 30px;
+      padding: 16px 18px;
+      border-radius: 24px;
+      color: #fff7e8;
+      background: linear-gradient(135deg, #21170f, #314a69);
+    }
+
+    .play {
+      display: grid;
+      flex: 0 0 auto;
+      width: 44px;
+      height: 44px;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 50%;
+    }
+
+    .section {
+      padding: 72px 0;
+    }
+
+    .section h2 {
+      max-width: 760px;
+      margin: 0;
+      font-family: Georgia, serif;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: 1;
+      letter-spacing: -0.045em;
+    }
+
+    .section-copy {
+      max-width: 680px;
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 34px;
+    }
+
+    .feature {
+      min-height: 230px;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background: rgba(255, 250, 240, 0.58);
+      box-shadow: 0 12px 40px rgba(34, 26, 18, 0.06);
+    }
+
+    .feature svg {
+      width: 34px;
+      height: 34px;
+      color: var(--blue);
+    }
+
+    .feature h3 {
+      margin: 22px 0 8px;
+      font-size: 1.2rem;
+    }
+
+    .feature p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .quote {
+      padding: 42px;
+      border-radius: 38px;
+      color: #fff7e8;
+      background:
+        radial-gradient(circle at 80% 10%, rgba(217, 168, 91, 0.28), transparent 20rem),
+        linear-gradient(135deg, #17120c, #263f5f);
+      box-shadow: var(--shadow);
+    }
+
+    .quote p {
+      max-width: 820px;
+      margin: 0;
+      font-family: Georgia, serif;
+      font-size: clamp(1.65rem, 4vw, 3.25rem);
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+    }
+
+    .quote span {
+      display: block;
+      margin-top: 22px;
+      color: rgba(255, 247, 232, 0.74);
+    }
+
+    .footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 36px 0 44px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      font-size: 0.95rem;
+    }
+
+    .footer a {
+      margin-left: 16px;
+      text-decoration: none;
+    }
+
+    .footer a:hover,
+    .footer a:focus-visible {
+      color: var(--ink);
+    }
+
+    @media (max-width: 860px) {
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 42px;
+      }
+
+      .phone-card {
+        max-width: 420px;
+        margin: 0 auto;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .shell {
+        width: min(100% - 28px, 1120px);
+      }
+
+      .phone-screen {
+        min-height: 500px;
+      }
+
+      .quote {
+        padding: 30px;
+      }
+
+      .footer a {
+        display: inline-block;
+        margin: 10px 14px 0 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .button {
+        transition: none;
+      }
+
+      .button:hover {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="shell nav" aria-label="Main navigation">
+      <a class="brand" href="lectio.html" aria-label="Lectio Daily home">
+        <span class="brand-mark" aria-hidden="true">L</span>
+        <span>Lectio Daily</span>
+      </a>
+      <nav class="nav-links" aria-label="Page links">
+        <a href="#features">Features</a>
+        <a href="lectioprivacy.html">Privacy</a>
+        <a href="https://github.com/rinerd72/lectio/issues">Support</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="shell hero">
+        <div>
+          <p class="eyebrow">Daily Bible Study</p>
+          <h1>Quiet scripture for ordinary days.</h1>
+          <p class="lead">
+            Lectio Daily pairs NET Bible passages with short written devotionals,
+            prayer, and audio reflections so you can return to Scripture with a
+            calmer rhythm each morning.
+          </p>
+          <div class="actions">
+            <a class="button primary" href="#features">See What It Includes</a>
+            <a class="button secondary" href="lectioprivacy.html">Read Privacy Policy</a>
+          </div>
+        </div>
+
+        <aside class="phone-card" aria-label="App preview">
+          <div class="phone-screen">
+            <div class="phone-date">Today · Eastertide</div>
+            <h2 class="phone-title">The hand that opens</h2>
+            <div class="verse-card">
+              <p><strong>Psalm 145:15-16</strong></p>
+              <p>The eyes of all look to you, and you give them their food in due season.</p>
+            </div>
+            <div class="verse-card">
+              <p>Reflection, prayer, scripture, and audio stay together in one focused daily reading.</p>
+            </div>
+            <div class="mini-player">
+              <div>
+                <strong>Audio Devotion</strong><br>
+                <span>Listen at your pace</span>
+              </div>
+              <div class="play" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+                  <path d="M8 5.14v13.72a1 1 0 0 0 1.5.86l11-6.86a1 1 0 0 0 0-1.72l-11-6.86A1 1 0 0 0 8 5.14Z"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section id="features" class="shell section">
+        <h2>A devotional rhythm you can keep.</h2>
+        <p class="section-copy">
+          Lectio Daily is intentionally simple: one day, one passage, one prayer,
+          and space to listen without turning Bible study into another noisy feed.
+        </p>
+        <div class="grid">
+          <article class="feature">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M5 4.75A2.75 2.75 0 0 1 7.75 2H20v17.25H7.75A2.75 2.75 0 0 0 5 22V4.75Z"/>
+              <path d="M5 19.25A2.75 2.75 0 0 1 7.75 16.5H20"/>
+            </svg>
+            <h3>NET Scripture</h3>
+            <p>Each day centers on a clear Bible passage with the NET translation kept at the heart of the reading.</p>
+          </article>
+          <article class="feature">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M12 3v18"/>
+              <path d="M5.5 7.5h13"/>
+              <path d="M7 13.5h10"/>
+              <path d="M9 19.5h6"/>
+            </svg>
+            <h3>Written Devotions</h3>
+            <p>Short reflections and prayers are built for daily attention, not endless scrolling.</p>
+          </article>
+          <article class="feature">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M4 10v4"/>
+              <path d="M8 6v12"/>
+              <path d="M12 3v18"/>
+              <path d="M16 7v10"/>
+              <path d="M20 11v2"/>
+            </svg>
+            <h3>Audio Reflections</h3>
+            <p>Listen when reading is not practical: on a walk, in the car, or at the edge of a quiet morning.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="shell section">
+        <div class="quote">
+          <p>Designed for people who want Scripture to feel less like a task and more like a daily return.</p>
+          <span>Lectio Daily for iPhone</span>
+        </div>
+      </section>
+    </main>
+
+    <footer class="shell footer">
+      <div>© 2026 Lectio Daily. All rights reserved.</div>
+      <div>
+        <a href="lectioprivacy.html">Privacy Policy</a>
+        <a href="https://github.com/rinerd72/lectio/issues">Support</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
